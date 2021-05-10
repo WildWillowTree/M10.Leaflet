@@ -1,0 +1,21 @@
+<html>
+  <head>
+      <title>Ex1 - Mi Mapa</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> 
+  </head>
+  <body>
+      <div id="mapid"></div>
+
+      <style>
+        #mapid { height: 300px; width: 100%; }
+      </style>
+      
+      <script>
+        var mymap = L.map('mapid').setView([41.386954, 2.170001], 16);
+        var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{}).addTo(mymap);
+        L.marker([41.3868561, 2.1661102]).bindPopup("<b>Restaurant centfocs</b> <br> Restaurante mediterráneo <br>Carrer de Balmes, 16, 08007 Barcelona").addTo(mymap);
+      </script>
+  </body>
+</html>

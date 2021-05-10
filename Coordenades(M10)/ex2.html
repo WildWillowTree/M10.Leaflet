@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Ex2 - Mi Mapa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    </head>
+    <body>
+        <div id="mapid"></div>
+
+        <style>
+        #mapid { height: 300px; width: 100%; }
+        </style>
+        
+        <script> 
+        var mymap = L.map('mapid').setView([41.386954, 2.170001], 16);
+        var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{}).addTo(mymap);
+        var popup = L.popup();
+        var marker = null;
+        function onMapClick(e) {  
+            if(marker !== null){
+                mymap.removeLayer(marker);
+            }
+            marker = L.marker(e.latlng,).bindPopup(popup).addTo(mymap);
+            mymap
+            .setView(e.latlng, 18);
+            popup
+            .setLatLng(e.latlng)
+            .setContent("Mis coordenadas son: <br>" + "Long: " + e.latlng.lat.toString() + " Lat: "+ e.latlng.lng.toString())
+            .openOn(mymap);
+        }
+        mymap.on('click', onMapClick);  
+
+        </script>
+    </body>
+</html>
