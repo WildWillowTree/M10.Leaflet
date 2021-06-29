@@ -47,9 +47,7 @@ async function onMapLoad() {
 	//MOSTRAR MARKERS DELS RESTAURANTS AL CARREGAR
 	for(item of data_markers){
 		item.kind_food = (item.kind_food).split(",");
-		photo = item.photo;
 		img = '<img src=' + item.photo + '>';
-
 		txt = item.name + '<br>' + item.adress + '<br>' + item.kind_food + '<br>' + ' lat: ' + item.lat + ' long: ' + item.lng + '<br>' + img;
 		marker = L.marker([item.lat, item.lng], {name: item.name, adress: item.adress, kind_food: item.kind_food, photo: img}).bindPopup(txt);
 		markersList.push(marker);
@@ -83,6 +81,8 @@ function render_to_map(data_markers,filter){
 	for(i = 0; i < data_markers.length; i++){
 		for(j = 0; j < data_markers[i].kind_food.length; j++){		
 			if(filter == data_markers[i].kind_food[j]){
+				img = '<img src=' + data_markers[i].photo + '>';
+				txt = data_markers[i].name + '<br>' + data_markers[i].adress + '<br>' + data_markers[i].kind_food + '<br>' + ' lat: ' + data_markers[i].lat + ' long: ' + data_markers[i].lng + '<br>' + img;
 				marker = L.marker([data_markers[i].lat, data_markers[i].lng], {name: data_markers[i].name, adress: data_markers[i].adress, kind_food: data_markers[i].kind_food}).bindPopup(txt);
 				markersList.push(marker);
 				map.addLayer(marker);
